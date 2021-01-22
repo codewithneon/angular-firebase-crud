@@ -1,0 +1,19 @@
+:host{
+    .title{
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    .list{
+        width: 40px;
+        text-align: center;
+    }
+    .action{
+        width: 165px;
+        text-align: center;
+    }
+    .modal-footer{
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+    }
+}

@@ -1,0 +1,137 @@
+<div class="row mt-3">
+    <div class="col-12">
+        <h3 class="title">{{title}}</h3>
+    </div>
+</div>
+<form [formGroup]='reqForm' (ngSubmit)="newQuery()" novalidate>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="form-label" for="fullName">Full Name</label>
+                <input type="text" formControlName="fullName" id="fullName" class="form-control" required>
+                <ng-template [ngIf]="reqForm.controls['fullName'].dirty || reqForm.controls['fullName'].touched">
+                    <small *ngIf="!(reqForm.controls['fullName'].invalid); else nameNameError" class="form-info text-success">Name Is Looks Good</small>
+                    <ng-template #nameNameError>
+                        <small class="form-info text-danger">
+                            {{reqForm.controls['fullName'].errors['required']?'Name Is Required':''}} 
+                            {{reqForm.controls['fullName'].errors['maxlength']? 'Characters - '+reqForm.controls['fullName'].errors['maxlength'].actualLength+' / '+'Max- '+reqForm.controls['fullName'].errors['maxlength'].requiredLength:''}}
+                            {{reqForm.controls['fullName'].errors['minlength']? 'Characters - '+reqForm.controls['fullName'].errors['minlength'].actualLength+' / '+'Min- '+reqForm.controls['fullName'].errors['minlength'].requiredLength:''}}
+                        </small>
+                    </ng-template>
+                </ng-template>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="form-label" for="fatherName">father's Name</label>
+                <input type="text" formControlName="fatherName" id="father" class="form-control" required>
+                <ng-template [ngIf]="reqForm.controls['fatherName'].dirty || reqForm.controls['fatherName'].touched">
+                    <small *ngIf="!(reqForm.controls['fatherName'].invalid); else fatherNameError" class="form-info text-success">Name Is Looks Good</small>
+                    <ng-template #fatherNameError>
+                        <small class="form-info text-danger">
+                            {{reqForm.controls['fatherName'].errors['required']?'Name Is Required':''}} 
+                            {{reqForm.controls['fatherName'].errors['maxlength']? 'Characters - '+reqForm.controls['fatherName'].errors['maxlength'].actualLength+' / '+'Max- '+reqForm.controls['fatherName'].errors['maxlength'].requiredLength:''}}
+                            {{reqForm.controls['fatherName'].errors['minlength']? 'Characters - '+reqForm.controls['fatherName'].errors['minlength'].actualLength+' / '+'Min- '+reqForm.controls['fatherName'].errors['minlength'].requiredLength:''}}
+                        </small>
+                    </ng-template>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-3">
+            <div class="form-group">
+                <label class="form-label" for="birthday">Date Of Birth</label>
+                <input type="date" formControlName="birthday" id="birthday" class="form-control" required>
+                <ng-template [ngIf]="reqForm.controls['birthday'].dirty || reqForm.controls['birthday'].touched">
+                    <small *ngIf="!(reqForm.controls['birthday'].invalid); else birthdayError" class="form-info text-success">birthday Is Looks Good</small>
+                    <ng-template #birthdayError>
+                        <small class="form-info text-danger">
+                            {{reqForm.controls['birthday'].errors['pattern']?'Invalid birthday':''}} 
+                            {{reqForm.controls['birthday'].errors['required']?'birthday Is Required':''}} 
+                            {{reqForm.controls['birthday'].errors['maxlength']? '| Characters - '+reqForm.controls['birthday'].errors['maxlength'].actualLength+' / '+'Max- '+reqForm.controls['birthday'].errors['maxlength'].requiredLength:''}}
+                            {{reqForm.controls['birthday'].errors['minlength']? '| Characters - '+reqForm.controls['birthday'].errors['minlength'].actualLength+' / '+'Min- '+reqForm.controls['birthday'].errors['minlength'].requiredLength:''}}
+                        </small>
+                    </ng-template>
+                </ng-template>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="form-group">
+                <label class="form-label" for="mobileNumber"> Mobile Number</label>
+                <input type="text" formControlName="mobileNumber" id="mobileNumber" class="form-control" required>
+                <ng-template [ngIf]="reqForm.controls['mobileNumber'].dirty || reqForm.controls['mobileNumber'].touched">
+                    <small *ngIf="!(reqForm.controls['mobileNumber'].invalid); else mobileNumberError" class="form-info text-success">Mobile Number Is Looks Good</small>
+                    <ng-template #mobileNumberError>
+                        <small class="form-info text-danger">
+                            {{reqForm.controls['mobileNumber'].errors['pattern']?'Invalid Mobile Number':''}} 
+                            {{reqForm.controls['mobileNumber'].errors['required']?'Mobile Number is required.':''}}
+                            {{reqForm.controls['mobileNumber'].errors['pattern'] && (reqForm.controls['mobileNumber'].errors['maxlength']|| reqForm.controls['mobileNumber'].errors['minlength']) ?' | ':''}} 
+                            {{reqForm.controls['mobileNumber'].errors['maxlength']? 'Characters - '+reqForm.controls['mobileNumber'].errors['maxlength'].actualLength+' / '+'Max- '+reqForm.controls['mobileNumber'].errors['maxlength'].requiredLength:''}}
+                            {{reqForm.controls['mobileNumber'].errors['minlength']? 'Characters - '+reqForm.controls['mobileNumber'].errors['minlength'].actualLength+' / '+'Min- '+reqForm.controls['mobileNumber'].errors['minlength'].requiredLength:''}}
+                        </small>
+                    </ng-template>
+                </ng-template>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="form-group">
+                <label class="form-label" for="className">class</label>
+                <select formControlName="className" id="className" class="custom-select" required>
+                    <option selected value="">Select Class</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+                <ng-template [ngIf]="reqForm.controls['className'].dirty || reqForm.controls['className'].touched">
+                    <small *ngIf="!(reqForm.controls['className'].invalid); else classError" class="form-info text-success">class Is Looks Good</small>
+                    <ng-template #classError>
+                        <small class="form-info text-danger">
+                            {{reqForm.controls['className'].errors['required']?'class Is Required':''}} 
+                        </small>
+                    </ng-template>
+                </ng-template>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="form-group">
+                <label class="form-label" for="roleNumber">roleNumber</label>
+                <input type="number" min="1" formControlName="roleNumber" id="roleNumber" class="form-control" required>
+                <ng-template [ngIf]="reqForm.controls['roleNumber'].dirty || reqForm.controls['roleNumber'].touched">
+                    <small *ngIf="!(reqForm.controls['roleNumber'].invalid); else roleError" class="form-info text-success">class Is Looks Good</small>
+                    <ng-template #roleError>
+                        <small class="form-info text-danger">
+                            {{reqForm.controls['roleNumber'].errors['required']?'Role Number is required.':''}}
+                        </small>
+                    </ng-template>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label class="form-label" for="address">address</label>
+                <input type="text" formControlName="address" id="address" class="form-control" required>
+                <ng-template [ngIf]="reqForm.controls['address'].dirty || reqForm.controls['address'].touched">
+                    <small *ngIf="!(reqForm.controls['address'].invalid); else addressError" class="form-info text-success">address Is Looks Good</small>
+                    <ng-template #addressError>
+                        <small class="form-info text-danger">
+                            {{reqForm.controls['address'].errors['required']?'address Is Required':''}} 
+                            {{reqForm.controls['address'].errors['maxlength']? 'Characters - '+reqForm.controls['address'].errors['maxlength'].actualLength+' / '+'Max- '+reqForm.controls['address'].errors['maxlength'].requiredLength:''}}
+                            {{reqForm.controls['address'].errors['minlength']? 'Characters - '+reqForm.controls['address'].errors['minlength'].actualLength+' / '+'Min- '+reqForm.controls['class'].errors['minlength'].requiredLength:''}}
+                        </small>
+                    </ng-template>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <button type="button" class="btn btn-block btn-secondary" routerLink="/">Back To list</button>
+        </div>
+        <div class="col-6">
+            <button type="submit" class="btn btn-block btn-success">submit</button>
+        </div>
+    </div>
+</form>

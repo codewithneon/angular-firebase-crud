@@ -1,0 +1,58 @@
+<div class="row mt-3">
+    <div class="col-9">
+       <h3 class="title">students Database</h3> 
+    </div>
+    <div class="col-3">
+        <button class="btn btn-sm btn-block btn-success" routerLink="new">New Student</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 my-2">
+        <table class="table table-sm table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th scope="col" class="list">#</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Father Name</th>
+                <th scope="col">Class Name</th>
+                <th scope="col">Role Number</th>
+                <th scope="col">Date Of Birth</th>
+                <th scope="col" class="action">action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-template ngFor let-item let-i="index" [ngForOf]="students">
+            <tr>
+                <th scope="row" class="list">{{i+1}}</th>
+                <td>{{item.fullName}}</td>
+                <td>{{item.fatherName}}</td>
+                <td>{{item.className}}</td>
+                <td>{{item.roleNumber}}</td>
+                <td>{{item.birthday}}</td>
+                <td class="p-0 action">
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                        <button type="button" (click)="viewItem(item.key)" class="btn btn-secondary">view</button>
+                        <button type="button" (click)="updateItem(item.key)" class="btn btn-warning">update</button>
+                        <button type="button" (click)="ConfirmRemove(item.key)" class="btn btn-danger">delete</button>
+                    </div>
+                </td>
+            </tr>
+            </ng-template>
+        </tbody>
+        </table>
+    </div>
+</div>
+<div class="modal fade" id="confirmDelete">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content text-center">
+        <div class="modal-body py-3">
+            <h3>Are you Sure?</h3>
+            <p>this Data Copletely Remove From Your server</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Back To List</button>
+            <button type="button" class="btn btn-sm btn-danger" (click)="deleteItem()">Confirm Delete</button>
+        </div>
+        </div>
+    </div>
+</div>
